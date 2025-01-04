@@ -4,4 +4,4 @@ import org.springframework.boot.SpringApplication; import org.springframework.bo
 
 public class StgApplication
 { public static void main(String[] args)
-{ SpringApplication.run(StgApplication.class, args); } }
+{ SpringApplication.run(StgApplication.psqlclass, args); } }
