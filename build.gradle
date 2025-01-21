@@ -17,15 +17,25 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	mockitoAgent
+}
+
+
+
+
 dependencies {
+	mockitoAgent 'net.bytebuddy:byte-buddy-agent:1.15.10'
+
+
+
 	// Spring Boot e JPA
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-	// Lombok (para reduzir boilerplate)
+	// Lombok
 	implementation 'org.projectlombok:lombok:1.18.30'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
-	testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 
 	// Banco de Dados: PostgreSQL
 	runtimeOnly 'org.postgresql:postgresql'
@@ -33,12 +43,10 @@ dependencies {
 	// Testes
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
-
-	// Devtools (recarga automática para desenvolvimento)
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.mockito:mockito-core:5.14.2'
 }
-
 
 tasks.named('test') {
 	useJUnitPlatform()
+	jvmArgs(['-XX:+EnableDynamicAgentLoading', '-Xshare:off', '-javaagent:' + configurations.mockitoAgent.asPath])
 }

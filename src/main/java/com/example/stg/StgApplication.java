@@ -1,7 +1,12 @@
 package com.example.stg;
-import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; @SpringBootApplication
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-public class StgApplication
-{ public static void main(String[] args)
-{ SpringApplication.run(StgApplication.psqlclass, args); } }
+@SpringBootApplication
+public class StgApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(StgApplication.class, args);  // Use a própria classe StgApplication aqui
+    }
+}
